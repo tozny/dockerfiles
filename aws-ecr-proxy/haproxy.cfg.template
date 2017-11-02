@@ -1,0 +1,32 @@
+global
+  maxconn 4096
+  maxpipes 1024
+  ca-base /etc/ssl/certs
+
+defaults
+  mode http
+  log 127.0.0.1:8514 local0 debug
+  option http-server-close
+  option dontlognull
+  option httplog
+  option forwardfor
+  timeout connect 5000
+  timeout client 50000
+  timeout server 50000
+
+resolvers dns
+  nameserver rancher 169.254.169.250:53
+  nameserver google 8.8.8.8:53
+  nameserver opendns1 208.67.222.222:53
+  nameserver opendns2 208.67.220.220:53
+
+frontend proxy
+  http-request set-header Host ECRURL
+  log global
+  bind *:80
+  option httplog
+  mode http
+  default_backend ecr
+
+backend ecr
+  server ecr ECRURL:443 resolvers dns check inter 1000 check ssl verify required ca-file ca-certificates.crt
