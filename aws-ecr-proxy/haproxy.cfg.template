@@ -29,4 +29,6 @@ frontend proxy
   default_backend ecr
 
 backend ecr
+  #rspirep ^Location:\ https://ECRURL(.*)      Location:\ https://%[req.hdr(Host)]\1
+  rspirep ^Location:\ https://ECRURL(.*)      Location:\ REGISTRYHOST\1
   server ecr ECRURL:443 resolvers dns check inter 1000 check ssl verify required ca-file ca-certificates.crt
