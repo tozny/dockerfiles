@@ -1,6 +1,13 @@
 Proxy requests from you.customdomain.com to the less-pretty ECR url like `12314141.dkr.ecr.us-west-2.amazonaws.com`.
 
-You only need to set one environment variable: `ECR_URL` and start the service. It is a basic nginx proxy.
+## Example
+
+```
+docker run -p "8080:80" \
+-e ECR_URL=12334456678.dkr.ecr.us-west-2.amazonaws \ 
+-e REGISTRY_HOST=https://registry.example.com \
+tozny/aws-ecr-proxy
+```
 
 
 ## How this works
