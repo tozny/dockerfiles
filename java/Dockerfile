@@ -36,6 +36,7 @@ RUN set -x \
 	&& ln -s /usr/lib/libsodium.so.18 /usr/lib/libsodium.so
 
 ADD import-rds-certs.sh /bin/
+RUN import-rds-certs.sh
 
 MAINTAINER Eric Mann
 
