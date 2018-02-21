@@ -7,7 +7,7 @@ FROM tozny/java
 ENV FLYWAY_VERSION 4.0.2
 ENV FLYWAY_SQL_DIR /sql
 
-RUN apk update && apk add --update wget ca-certificates && update-ca-certificates
+RUN apk update && apk add --update wget ca-certificates
 
 RUN mkdir /opt \
     && wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/${FLYWAY_VERSION}/flyway-commandline-${FLYWAY_VERSION}.zip \
