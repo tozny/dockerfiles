@@ -5,4 +5,4 @@ var pem = fs.readFileSync('/tmp/private.pem');
 
 var jwk = rsaPemToJwk(pem, 'private');
 
-console.log(jwk)
+console.log(JSON.stringify(jwk))
