@@ -35,6 +35,7 @@ RUN set -x \
 	&& [ "$JAVA_HOME" = "$(docker-java)" ] \
 	&& ln -s /usr/lib/libsodium.so.18 /usr/lib/libsodium.so
 
+ADD java.security /usr/lib/jvm/java-1.8-openjdk/jre/lib/security
 ADD import-rds-certs.sh /bin/
 RUN import-rds-certs.sh
 
