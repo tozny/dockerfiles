@@ -8,8 +8,8 @@ FROM alpine:3.7
 ENV PATH /usr/local/bin:/usr/local/python3/bin:$PATH
 
 ENV LANG C.UTF-8
-ENV PYTHON_VERSION 3.6.6
-ENV PYTHON_PIP_VERSION 10.0.1
+ENV PYTHON_VERSION 3.7.2
+ENV PYTHON_PIP_VERSION 18.1
 
 RUN apk update && apk add --no-cache \
 	bzip2-dev \
@@ -57,8 +57,8 @@ RUN gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)" \
 		 --enable-unicode=ucs4 \
 		 --prefix=/usr/local/python3 \
 	&& make && make install \
-	&& cp /usr/local/python3/lib/libpython3.6m.so.1.0 /usr/lib/ \
-	&& cp /usr/local/python3/lib/libpython3.6m.so.1.0 /lib/
+	&& cp /usr/local/python3/lib/libpython3.7m.so.1.0 /usr/lib/ \
+	&& cp /usr/local/python3/lib/libpython3.7m.so.1.0 /lib/
 
 ENV PATH /usr/local/python3/bin:$PATH
 
