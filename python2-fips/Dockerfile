@@ -9,7 +9,7 @@ ENV PATH /usr/local/bin:/usr/local/python2/bin:$PATH
 
 ENV LANG C.UTF-8
 ENV PYTHON_VERSION 2.7.15
-ENV PYTHON_PIP_VERSION 10.0.1
+ENV PYTHON_PIP_VERSION 18.1
 
 RUN apk update && apk add --no-cache \
 	bzip2-dev \
