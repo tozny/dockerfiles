@@ -4,10 +4,12 @@ set -e
 
 if [ -z "${AWS_ACCESS_KEY_ID}" ]; then
   echo "Warning: You did not set the AWS_ACCESS_KEY_ID environment variable."
+  exit 1
 fi
 
 if [ -z "${AWS_SECRET_ACCESS_KEY}" ]; then
   echo "Warning: You did not set the AWS_SECRET_ACCESS_KEY environment variable."
+  exit 1
 fi
 
 if [ -z "${S3_BUCKET}" ]; then
@@ -32,14 +34,17 @@ fi
 
 if [ -z "${AWS_DEFAULT_REGION}" ]; then
   echo "Warning: You did not set the AWS_DEFAULT_REGION environment variable."
+  exit 1
 fi
 
 if [ -z "${AWS_DEFAULT_REGION}" ]; then
   echo "Warning: You did not set the AWS_DEFAULT_REGION environment variable."
+  exit 1
 fi
 
 if [ -z "${S3_FILENAME_PREFIX}" ]; then
   echo "Warning: You did not set the S3_FILENAME_PREFIX environment variable."
+  exit 1
 fi
 
 
