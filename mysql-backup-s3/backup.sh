@@ -61,7 +61,9 @@ copy_s3 () {
 
   echo "Uploading ${DEST_FILE} on S3..."
 
-  cat $SRC_FILE | aws $AWS_ARGS s3 $S3_ARGS cp - s3://$S3_BUCKET/$S3_PREFIX/$DEST_FILE
+  # Set routing always as virtual host style
+  aws configure set default.s3.addressing_style virtual
+  cat $SRC_FILE | aws $AWS_ARGS s3 cp $S3_ARGS - s3://$S3_BUCKET/$S3_PREFIX/$DEST_FILE
 
   if [ $? != 0 ]; then
     >&2 echo "Error uploading ${DEST_FILE} on S3"
