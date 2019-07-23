@@ -7,7 +7,7 @@ Backup MySQL to S3 (supports periodic backups)
 ## Environment variables
 
 - `MYSQLDUMP_OPTIONS` mysqldump options (default: --quote-names --quick --add-drop-table --add-locks --allow-keywords --disable-keys --extended-insert --single-transaction --create-options --comments --net_buffer_length=16384)
-- `MYSQLDUMP_DATABASE` list of databases you want to backup (default: --all-databases)
+- `MYSQLDUMP_DATABASE` list of databases you want to backup *required*
 - `MYSQL_HOST` the mysql host *required*
 - `MYSQL_PORT` the mysql port (default: 3306)
 - `MYSQL_USER` the mysql user *required*

@@ -47,9 +47,13 @@ if [ -z "${S3_FILENAME_PREFIX}" ]; then
   exit 1
 fi
 
+if [ -z "${MYSQLDUMP_DATABASE}" ]; then
+  echo "Warning: You did not set the MYSQLDUMP_DATABASE environment variable."
+  exit 1
+fi
+
 
 MYSQLDUMP_OPTIONS="--quote-names --quick --add-drop-table --add-locks --allow-keywords --disable-keys --extended-insert --single-transaction --create-options --comments --net_buffer_length=16384"
-MYSQLDUMP_DATABASE="--all-databases"
 MYSQL_PORT="3306"
 MYSQL_HOST_OPTS="-h $MYSQL_HOST -P $MYSQL_PORT -u$MYSQL_USER -p$MYSQL_PASSWORD"
 DUMP_START_TIME=$(date +"%Y-%m-%dT%H%M%SZ")

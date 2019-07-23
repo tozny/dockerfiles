@@ -7,7 +7,7 @@ if [ "${S3_S3V4}" = "yes" ]; then
 fi
 
 if [ -z "${SCHEDULE}" ]; then
-  sh backup.sh
+  sh /app/backup.sh
 else
-  echo "$SCHEDULE /bin/sh backup.sh" | crontab - && crond -f -L /dev/stdout
+  echo "$SCHEDULE /bin/sh /app/backup.sh" | crontab - && crond -f -L /dev/stdout
 fi
