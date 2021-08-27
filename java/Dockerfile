@@ -2,9 +2,9 @@
 #
 # Work derived from official PHP Docker Library:
 # Copyright (c) Docker, Inc.
-# Copyright (c) 2016 Tozny, LLC
+# Copyright (c) 2021 Tozny, LLC
 
-FROM alpine:3.4
+FROM alpine:3.14
 
 # Default to UTF-8 file.encoding
 ENV LANG C.UTF-8
@@ -21,12 +21,11 @@ RUN { \
 
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 ENV PATH $PATH:$JAVA_HOME/bin
-ENV JAVA_VERSION 8u111
-ENV JAVA_ALPINE_VERSION 8.111.14-r0
+ENV JAVA_VERSION 8
 
 RUN set -x \
 	&& apk add --no-cache \
-		openjdk8="$JAVA_ALPINE_VERSION" \
+		openjdk8 \
 		libsodium \
 		bash \
 		coreutils \
@@ -38,7 +37,6 @@ RUN set -x \
 ADD import-rds-certs.sh /bin/
 RUN import-rds-certs.sh
 
-MAINTAINER Eric Mann
 
 WORKDIR /data
 
