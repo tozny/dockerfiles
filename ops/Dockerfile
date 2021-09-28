@@ -102,6 +102,9 @@ ENV GOPATH /go
 ENV PATH $GOPATH/bin:$PATH
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 
+# Preload toda into container for operators to use for secure and effecient data management
+RUN wget -O toda https://tozny-secret-agent.s3.us-west-2.amazonaws.com/v0.0.2/tozny-open-data-agent_linux_386-v0.0.2 && chmod +x ./toda && mv ./toda /usr/bin/
+
 # By default run command when this container is launched to stay busy doing nothing
 # in order to prevent it from exiting so operators can exec into the container as needed
 CMD tail -f /dev/null
