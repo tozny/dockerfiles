@@ -38,19 +38,10 @@ tozny organization and be logged in to DockerHub:
 
     docker login --username=mydockerhubusername
 
-Then use the following recipe to build and push:
+Then run the following commands:
 
-```bash
-OPENJDK_TAG=8u292
-SBT_VERSION=1.5.4
-
-docker build \
-    --build-arg OPENJDK_TAG=$OPENJDK_TAG \
-    --build-arg SBT_VERSION=$SBT_VERSION \
-    --tag tozny/sbt:${OPENJDK_TAG}_${SBT_VERSION} \
-    --tag tozny/sbt:latest \
-    .
-
-docker push tozny/sbt:${OPENJDK_TAG}_${SBT_VERSION}
-docker push tozny/sbt:latest
 ```
+make build-all
+make publish-all
+```
+These will use the JDK & SBT versions set in the `.env`.
