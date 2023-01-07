@@ -21,7 +21,7 @@ docker-buildx-init:
 	docker buildx ls
 
 build-all: docker-buildx-init
-	docker buildx build --platform linux/arm64,linux/amd64 --tag tozny/keycloak:latest ./
+	docker buildx build --platform linux/amd64 --tag tozny/keycloak:hotfix ./
 
 push-all: docker-buildx-init
-	docker buildx build --push --platform linux/arm64,linux/amd64 --tag tozny/keycloak:latest ./
+	docker buildx build --push --platform linux/amd64 --tag tozny/keycloak:hotfix ./
