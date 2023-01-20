@@ -21,8 +21,8 @@ docker-buildx-init:
 	docker buildx ls
 
 build-all: docker-buildx-init
-	docker buildx build --platform linux/arm64,linux/amd64 --tag tozny/golang:latest ./
+	docker buildx build --platform linux/arm64,linux/amd64 --tag tozny/golang:1.19.5-alpine3.17 ./
 
 push-all: docker-buildx-init
-	docker buildx build --push --platform linux/arm64,linux/amd64 --tag tozny/golang:latest ./
+	docker buildx build --push --platform linux/arm64,linux/amd64 --tag tozny/golang:1.19.5-alpine3.17  ./
 
