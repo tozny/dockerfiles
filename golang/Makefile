@@ -26,3 +26,12 @@ build-all: docker-buildx-init
 push-all: docker-buildx-init
 	docker buildx build --push --platform linux/arm64,linux/amd64 --tag tozny/golang:1.19.5-alpine3.17  ./
 
+# Don't export to shell to keep stable per invoke of make / prevent dynamic interpolation
+# Variables used to uniquely tag docker builds
+export TIMESTAMP=$(shell date +%s)
+export GIT_SHORT_HASH=$(shell echo $(shell git rev-parse HEAD) | cut -c 1-8)
+IMAGE_TAG=$(GIT_SHORT_HASH)-$(TIMESTAMP)
+
+publish:
+	docker build --no-cache --tag tozny/golang:$(IMAGE_TAG) ./
+	docker push tozny/golang:$(IMAGE_TAG)
