@@ -4,7 +4,7 @@
 # Copyright (c) Docker, Inc.
 # Copyright (c) 2021 Tozny, LLC
 
-FROM alpine:3.18.3
+FROM alpine:3.18.5
 
 # Default to UTF-8 file.encoding
 ENV LANG C.UTF-8
