@@ -21,10 +21,10 @@ docker-buildx-init:
 	docker buildx ls
 
 build-all: docker-buildx-init
-	docker buildx build --platform linux/arm64,linux/amd64 --tag tozny/java:cve-updates ./
+	docker buildx build --platform linux/arm64,linux/amd64 --tag tozny/java:02132024 ./
 
 push-all: docker-buildx-init
-	docker buildx build --push --platform linux/arm64,linux/amd64 --tag tozny/java:cve-updates ./
+	docker buildx build --push --platform linux/arm64,linux/amd64 --tag tozny/java:02132024 ./
 
 # Don't export to shell to keep stable per invoke of make / prevent dynamic interpolation
 # Variables used to uniquely tag docker builds
