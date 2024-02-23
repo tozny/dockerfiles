@@ -13,9 +13,9 @@ if [ "$GIT_REPO" != "" ]; then
     microdnf install -y git
 
     # Install Maven
-    cd /opt/jboss 
-    curl -s https://apache.uib.no/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz | tar xz
-    mv apache-maven-3.5.4 /opt/jboss/maven
+    cd /opt/jboss
+    curl -s https://apache.uib.no/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.tar.gz | tar xz
+    mv apache-maven-3.8.8 /opt/jboss/maven
     export M2_HOME=/opt/jboss/maven
 
     # Clone repository
@@ -28,7 +28,7 @@ if [ "$GIT_REPO" != "" ]; then
     echo "Keycloak from [build]: $GIT_REPO/$GIT_BRANCH/commit/$MASTER_HEAD"
 
     $M2_HOME/bin/mvn -Pdistribution -pl distribution/server-dist -am -Dmaven.test.skip clean install
-    
+
     cd /opt/jboss
 
     tar xfz /opt/jboss/keycloak-source/distribution/server-dist/target/keycloak-*.tar.gz
@@ -37,7 +37,7 @@ if [ "$GIT_REPO" != "" ]; then
     rm -rf /opt/jboss/maven
     rm -rf /opt/jboss/keycloak-source
     rm -rf $HOME/.m2/repository
-    
+
     mv /opt/jboss/keycloak-* /opt/jboss/keycloak
 else
     echo "Keycloak from [download]: $KEYCLOAK_DIST"
