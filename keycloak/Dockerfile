@@ -12,7 +12,7 @@ ENV JBOSS_HOME /opt/jboss/keycloak
 ENV LANG en_US.UTF-8
 
 ARG GIT_REPO=tozny/keycloak
-ARG GIT_BRANCH=build-custom-image
+ARG GIT_BRANCH=build-custom-image-v16.1.1
 ARG KEYCLOAK_DIST=https://downloads.jboss.org/keycloak/$KEYCLOAK_VERSION/keycloak-$KEYCLOAK_VERSION.tar.gz
 
 USER root
