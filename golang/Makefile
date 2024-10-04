@@ -21,10 +21,10 @@ docker-buildx-init:
 	docker buildx ls
 
 build-all: docker-buildx-init
-	docker buildx build --platform linux/arm64,linux/amd64 --tag tozny/golang:1.22.4-alpine3.19-052024 ./
+	docker buildx build --platform linux/arm64,linux/amd64 --tag tozny/golang:1.22.8-alpine3.19 ./
 
 push-all: docker-buildx-init
-	docker buildx build --push --platform linux/arm64,linux/amd64 --tag tozny/golang:1.22.4-alpine3.19-052024  ./
+	docker buildx build --push --platform linux/arm64,linux/amd64 --tag tozny/golang:1.22.8-alpine3.19  ./
 
 # Don't export to shell to keep stable per invoke of make / prevent dynamic interpolation
 # Variables used to uniquely tag docker builds
