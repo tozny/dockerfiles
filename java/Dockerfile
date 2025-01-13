@@ -29,14 +29,16 @@ RUN set -x \
 	libsodium \
 	bash \
 	coreutils \
-	curl \
+	curl=8.11.1-r0 \
 	openssl \
+	libexpat=2.6.4-r0 \
 	&& [ "$JAVA_HOME" = "$(docker-java)" ] \
 	&& ln -s /usr/lib/libsodium.so.18 /usr/lib/libsodium.so
 
 ADD import-rds-certs.sh /bin/
 RUN import-rds-certs.sh
 
+RUN apk upgrade
 
 WORKDIR /data
 
