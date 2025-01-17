@@ -29,9 +29,8 @@ RUN set -x \
 	libsodium \
 	bash \
 	coreutils \
-	curl=8.11.1-r0 \
+	curl \
 	openssl \
-	libexpat=2.6.4-r0 \
 	&& [ "$JAVA_HOME" = "$(docker-java)" ] \
 	&& ln -s /usr/lib/libsodium.so.18 /usr/lib/libsodium.so
 
