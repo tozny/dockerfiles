@@ -37,6 +37,7 @@ RUN set -x \
 ADD import-rds-certs.sh /bin/
 RUN import-rds-certs.sh
 
+RUN apk upgrade
 
 WORKDIR /data
 
