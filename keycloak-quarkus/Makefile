@@ -1,9 +1,4 @@
-# Import environment file
-include .env
-# Source all variables in environment file
-# This only runs in the make command shell
-# so won't muddy up, e.g. your login shell
-export $(shell sed 's/=.*//' .env)
+
 # Commands run in order by default when make invoked without arguments
 # all: clean push-all
 all: build-all
@@ -21,10 +16,10 @@ docker-buildx-init:
 	docker buildx ls
 
 build-all: docker-buildx-init
-	docker buildx build --platform linux/arm64,linux/amd64 --tag tozny/keycloak:latest ./
+	docker buildx build --platform linux/arm64,linux/amd64 --tag tozny/keycloak:26.1.4-{feature} ./
 
 push-all: docker-buildx-init
-	docker buildx build --push --platform linux/arm64,linux/amd64 --tag tozny/keycloak:latest ./
+	docker buildx build --push --platform linux/arm64,linux/amd64 --tag tozny/keycloak:26.1.4-{feature} ./
 
 
 # Don't export to shell to keep stable per invoke of make / prevent dynamic interpolation
