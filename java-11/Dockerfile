@@ -4,7 +4,7 @@
 # Copyright (c) Docker, Inc.
 # Copyright (c) 2021 Tozny, LLC
 
-FROM alpine:3.22
+FROM alpine:3.22.4
 
 # Default to UTF-8 file.encoding
 ENV LANG C.UTF-8
@@ -19,13 +19,13 @@ RUN { \
 	} > /usr/local/bin/docker-java \
 	&& chmod +x /usr/local/bin/docker-java
 
-ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk
 ENV PATH $PATH:$JAVA_HOME/bin
-ENV JAVA_VERSION 8
+ENV JAVA_VERSION 11
 
 RUN set -x \
 	&& apk add --no-cache \
-	openjdk8 \
+	openjdk11 \
 	libsodium \
 	bash \
 	coreutils \

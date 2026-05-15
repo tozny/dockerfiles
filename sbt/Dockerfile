@@ -1,10 +1,9 @@
 # This Dockerfile has two required ARGs to determine which base image
 # to use for the JDK and which sbt version to install.
 
-ARG OPENJDK_TAG=8u342
-FROM openjdk:${OPENJDK_TAG}
+FROM eclipse-temurin:11-jdk-jammy
 
-ARG SBT_VERSION=1.8.2
+ARG SBT_VERSION=1.10.7
 
 # Install sbt
 RUN \
@@ -17,7 +16,7 @@ RUN \
   apt-get install sbt && \
   cd && \
   rm -r /working/ && \
-  sbt sbtVersion
+  sbt --version
 
 # Include libsodium
 RUN apt-get update && apt-get install -y --no-install-recommends \
