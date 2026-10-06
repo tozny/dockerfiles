@@ -1,12 +1,12 @@
 FROM registry.access.redhat.com/ubi9 as ubi-micro-build
 ENV LANG en_US.UTF-8
-ENV KEYCLOAK_VERSION 26.1.4
+ENV KEYCLOAK_VERSION 26.7.3
 ENV JDBC_POSTGRES_VERSION 42.2.5
 
 ENV LANG en_US.UTF-8
 
 ARG GIT_REPO=tozny/keycloak
-ARG GIT_BRANCH=WR-595-Keycloak-Upgrade-26.1.4
+ARG GIT_BRANCH=WR-595-Keycloak-Upgrade-26.7.3
 #ARG GIT_BRANCH=WR-595-Keycloak-Upgrade-${KEYCLOAK_VERSION}
 
 USER root
@@ -14,12 +14,16 @@ USER root
 RUN yum update -y && yum install -y git openssl tar which java-21-openjdk-devel glibc-langpack-en findutils && yum clean all
 
 # Clone repository
-RUN git clone --depth 1 https://github.com/$GIT_REPO.git -b $GIT_BRANCH /opt/keycloak-source
+# CACHEBUST must be referenced by the RUN below, otherwise Docker ignores it when
+# computing the cache key. Passing a new value (see `make build FRESH=1`) rebuilds
+# this layer and every layer after it, while the yum layers above stay cached.
+ARG CACHEBUST=0
+RUN echo "cachebust=$CACHEBUST" && git clone --depth 1 https://github.com/$GIT_REPO.git -b $GIT_BRANCH /opt/keycloak-source
 
 # Build
 WORKDIR /opt/keycloak-source
 
-RUN ./mvnw -pl quarkus/deployment,quarkus/dist -am -DskipTests clean install
+RUN ./mvnw -pl quarkus/deployment,quarkus/dist -am -DskipTests -DskipProtoLock=true clean install
 
 WORKDIR /opt/quarkus
 
