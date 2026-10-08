@@ -16,13 +16,13 @@ docker-buildx-init:
 	docker buildx ls
 
 build-all: docker-buildx-init
-	docker buildx build $(BUILD_ARGS) --platform linux/arm64,linux/amd64 --tag tozny/keycloak:26.7.3-rc.1 ./
+	docker buildx build $(BUILD_ARGS) --platform linux/arm64,linux/amd64 --tag tozny/keycloak:26.8.0-alpha.1 ./
 
 build: docker-buildx-init
-	docker buildx build $(BUILD_ARGS) --platform linux/amd64 --tag tozny/keycloak:26.7.3-rc.1 ./
+	docker buildx build $(BUILD_ARGS) --platform linux/amd64 --tag tozny/keycloak:26.8.0-alpha.1 ./
 
 push-all: docker-buildx-init
-	docker buildx build $(BUILD_ARGS) --push --platform linux/arm64,linux/amd64 --tag tozny/keycloak:26.7.3-rc.1 ./
+	docker buildx build $(BUILD_ARGS) --push --platform linux/arm64,linux/amd64 --tag tozny/keycloak:26.8.0-alpha.1 ./
 
 
 # Don't export to shell to keep stable per invoke of make / prevent dynamic interpolation

@@ -1,12 +1,12 @@
 FROM registry.access.redhat.com/ubi9 as ubi-micro-build
 ENV LANG en_US.UTF-8
-ENV KEYCLOAK_VERSION 26.7.3
+ENV KEYCLOAK_VERSION 26.8.0
 ENV JDBC_POSTGRES_VERSION 42.2.5
 
 ENV LANG en_US.UTF-8
 
 ARG GIT_REPO=tozny/keycloak
-ARG GIT_BRANCH=WR-595-Keycloak-Upgrade-26.7.3
+ARG GIT_BRANCH=WR-595-Keycloak-Upgrade-26.8.0
 #ARG GIT_BRANCH=WR-595-Keycloak-Upgrade-${KEYCLOAK_VERSION}
 
 USER root
